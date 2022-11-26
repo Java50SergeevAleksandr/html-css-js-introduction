@@ -1,0 +1,52 @@
+body {
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100%;
+}
+html {
+    height: 100%;
+}
+.fullBoard {
+    display: flex;
+    flex-direction: column;
+}
+.bigBoard {
+    display: flex;
+    flex-direction: row;     
+}
+.board {
+    display: flex;
+    flex-direction: column;
+    border: 3px solid rgb(73, 62, 0);
+}
+.column {
+    display: flex;
+    flex-direction: row;
+}
+.row {
+    display: flex;
+    flex-direction: row;
+   
+}
+.cell-white {
+    background-color: white;
+    width: 5vw;
+    height: 5vw;
+}
+.cell-black {
+    background-color: black;
+    width: 5vw;
+    height: 5vw;
+}
+
+.cell {
+    display: flex;
+    width: 5vw;
+    height: 5vw;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    text-align:center;
+    text-transform: capitalize;    
+}
