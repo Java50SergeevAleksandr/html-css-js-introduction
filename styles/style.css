@@ -1,12 +1,12 @@
 @font-face {
     font-family: airstream;
-    src:url(fonts/Airstream-webfont.svg);
-    src:url(fonts/Airstream-webfont.woff);
+    src:url(./fonts/Airstream-webfont.svg);
+    src:url(./fonts/Airstream-webfont.woff);
 }
 @font-face {
     font-family: lakeshor;
-    src: url(fonts/LAKESHOR-webfont.svg);
-    src: url(fonts/LAKESHOR-webfont.woff);
+    src: url(./fonts/LAKESHOR-webfont.svg);
+    src: url(./fonts/LAKESHOR-webfont.woff);
 }
 html {
     height: 100%;
