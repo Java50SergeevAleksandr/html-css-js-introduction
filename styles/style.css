@@ -16,7 +16,8 @@ body {
     --thumbnails-image-height: 15vw;
     --thumbnails-title-height: calc(var(--thumbnails-image-height) * 0.33);
     --details-image-width: 90vw;
-    --details-image-height: 50vw;
+    --details-image-height: 60vw;
+   
 }
 body {
     height: 100%;
@@ -44,14 +45,15 @@ body {
     flex-direction: column;
     align-items: center;    
 }
-.detail-image {    
+.details-image {    
     width: var(--details-image-width);
-    height: var(--details-image-height);
+    height: var(--details-image-height);    
+   
     border-radius: 25%;
 }
 .details-title {
     display: block;
-    background-color: rgb(0, 136, 0);    
+    background-color: rgb(0, 173, 0);    
     font-size: 9vw;
     font-family: airstream;
     padding: 0 1vw 1vh 0;
@@ -60,7 +62,7 @@ body {
     left: -2vw;
 }
 .details-frame {
-    position: relative;
+    position: relative;    
 }
 .thumbnails-list {
     display: flex;
@@ -78,6 +80,9 @@ body {
     border-radius: 30%;
     overflow: hidden;
     min-height: calc(var(--thumbnails-image-height) + var(--thumbnails-title-height) );
+    min-height: calc(var(--thumbnails-image-height) + var(--thumbnails-title-height));
+    min-width: var(--thumbnails-image-width);
+    max-width: var(--thumbnails-image-width);
 }
 .thumbnails-item:hover {
     transform: scale(1.1);
@@ -108,7 +113,7 @@ body {
         --thumbnails-image-height: 7vw;
         --thumbnails-title-height: calc(var(--thumbnails-image-height) * 0.43);
         --details-image-width: 60vw;
-        --details-image-height: 30vw;
+        --details-image-height: 40vw;
     }
     .main-class {
         flex-direction: row;        
@@ -143,9 +148,10 @@ body {
     }
 
 }
-@media (min-width: 1000px) {    
-    .detail-image {
-        max-height: 70vh;
-        max-width: 200vh;
+@media (min-width: 1000px) {  
+     
+    .details-image {        
+        max-height: 80vh;
+        max-width: 120vh;
     }       
 }
