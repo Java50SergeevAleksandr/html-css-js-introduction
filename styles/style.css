@@ -45,6 +45,9 @@ body {
     flex-direction: column;
     align-items: center;    
 }
+.hidden .details-container {
+    display: none;
+}
 .details-image {    
     width: var(--details-image-width);
     height: var(--details-image-height);    
@@ -61,6 +64,14 @@ body {
     bottom: 3.5vh;
     left: -2vw;
 }
+#hide-button {
+    position: absolute;
+    top: 2vh;
+    right: 2vw;
+    /* color: rgb(218, 65, 65); */
+    font-weight: bold; 
+       
+}
 .details-frame {
     position: relative;    
 }
@@ -72,6 +83,9 @@ body {
     list-style: none;
     justify-content: space-around;
     padding-left: 0;    
+}
+.hidden .thumbnails-list{
+    max-height: 80vh;    
 }
 .thumbnails-item {
     border: solid 2px rgb(0, 136, 0);
@@ -85,8 +99,7 @@ body {
     max-width: var(--thumbnails-image-width);
 }
 .thumbnails-item:hover {
-    transform: scale(1.1);
-    margin-left: 1vw;
+    transform: scale(1.1);  
 }
 .thumbnails-anchor {
     display: flex;
@@ -109,11 +122,14 @@ body {
 }
 @media (min-width: 560px) {
     body {
-        --thumbnails-image-width: 15vw;
-        --thumbnails-image-height: 7vw;
+        --thumbnails-image-width: 12.3vw;
+        --thumbnails-image-height: 7.3vw;
         --thumbnails-title-height: calc(var(--thumbnails-image-height) * 0.43);
         --details-image-width: 60vw;
         --details-image-height: 40vw;
+    }
+    .thumbnails-item:hover {       
+        margin-left: 1vw;
     }
     .main-class {
         flex-direction: row;        
@@ -146,12 +162,29 @@ body {
     .details-title {
         font-size: 6vw;
     }
-
+    .hidden .thumbnails-list{
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-evenly;  
+    }
+    #hide-button {
+        font-size: 2vw;                
+    }  
 }
 @media (min-width: 1000px) {  
      
     .details-image {        
         max-height: 80vh;
         max-width: 120vh;
-    }       
+    }
+    .hidden .thumbnails-list{
+        align-content: space-between; 
+    }
+    .hidden .thumbnails-item:hover {        
+        margin-left: 0;
+    }   
+    #hide-button {
+        height: 3vw;
+        width: 3vw;
+    }     
 }
