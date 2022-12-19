@@ -9,6 +9,7 @@ const myAudio = document.getElementById("audio");
 const HIDDEN = "hidden";
 const IS_POINT = "is-point";
 let soundVolume = 0.5;
+let audioTimeOut;
 
 
 function showDetals() {
@@ -33,21 +34,30 @@ function pauseAudio() {
 }
 
 function playTrack() {
+    clearTimeout(audioTimeOut);
     playAudio();
-    setTimeout(pauseAudio, 5000);
+    audioTimeOut = setTimeout(pauseAudio, 5000);
 }
 
 function muteVOlume() {
     myAudio.pause();
     soundVolume = 0;
+    showDetals();
+    playTrack();
 }
 
 function setHalfVolume() {
+    myAudio.pause();
     soundVolume = 0.4;
+    showDetals();
+    playTrack();
 }
 
 function setFullVolume() {
+    myAudio.pause();
     soundVolume = 0.8;
+    showDetals();
+    playTrack();
 }
 
 function setDetails(anchor) {
