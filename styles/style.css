@@ -26,6 +26,12 @@ body {
     flex-direction: column;
     margin: 0;
 }
+
+.sound-buttons {
+    position:absolute;
+    top: 10vh;
+    left: 0vw;
+}
 .logo {
     display: block;
     text-align: center;
@@ -33,6 +39,7 @@ body {
     font-size: 5vw;
     text-transform: uppercase;
     font-family: lakeshor;
+    position: relative;
 }
 .main-class {
     display: flex;
@@ -43,7 +50,9 @@ body {
 .details-container {
     display: flex;
     flex-direction: column;
-    align-items: center;    
+    align-items: center;
+    transition: 5s;
+    transition-timing-function: cubic-bezier(.2,.59,.68,.12);  
 }
 .hidden .details-container {
     display: none;
@@ -120,6 +129,11 @@ body {
     color: green;
     align-self: stretch;    
 }
+.is-point {
+    transform: scale(0.001) rotate(360deg);    
+    transition: 0s;
+}
+
 @media (min-width: 560px) {
     body {
         --thumbnails-image-width: 12.3vw;
@@ -186,5 +200,10 @@ body {
     #hide-button {
         height: 3vw;
         width: 3vw;
+    }
+    .sound-buttons {
+        position:absolute;
+        top: 6vh;
+        left: 0vw;
     }     
 }
