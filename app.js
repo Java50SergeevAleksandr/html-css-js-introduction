@@ -12,18 +12,12 @@ function sortEvenFree(a, b) {
     return a % 2 ? 1 : -1;
 }
 
-
-
 function sortEven(a, b) {
     let firstIsEven = Math.abs(a) % 2;
     let secondIsEven = Math.abs(b) % 2;
     return firstIsEven === secondIsEven ? 0 :
         firstIsEven ? 1 : -1;
 }
-
-
-
-
 
 
 function evenAscOddDesc(array) {
@@ -39,6 +33,19 @@ function evenAscOddDesc(array) {
     }))
     return res;
 }
+
+function evenAscOddDesc_2(array) {
+    const res = array.sort(function (a, b) {
+        let firstIsEven = a % 2;
+        let secondIsEven = b % 2;
+        return firstIsEven === secondIsEven ? a - b :
+            firstIsEven ? 1 : -1;
+    })
+    return res.sort(function(a,b){
+        return (a%2 === 1 && b%2 === 1) ? b - a : 0;        
+    })
+}
+
 
 
 function getMin(array) {
@@ -72,7 +79,7 @@ function getMinMaxAvg(array) {
             resAr[2] = resAr[2] / array.length
         }
         return resAr;
-    }, [0,0,0])
+    }, [array[0], array[0], 0])
     return res;
 }
 
@@ -81,6 +88,7 @@ function getMinMaxAvg(array) {
 console.log(`evenOddSort([20,-10,333,1000, 552, 7,-7]) result ${evenOddSort([20, -10, 333, 1000, 552, 7, -7])}`);
 console.log(`oddEvenSort([20,-10,333,1000, 552, 7,-7]) result ${oddEvenSort([20, -10, 333, 1000, 552, 7, -7])}`);
 console.log(`evenAscOddDesc([20,-10,333,1000, 552, 7,-7]) result ${evenAscOddDesc([20, -10, 333, 1000, 552, 7, -7])}`);
+console.log(`evenAscOddDesc_2([20,-10,333,1000, 552, 7,-7]) result ${evenAscOddDesc_2([20, -10, 333, 1000, 552, 7, -7])}`);
 console.log(`getMin([20,-10,333,1000, 552, 7,-7]) result ${getMin([20, -10, 333, 1000, 552, 7, -7])}`);
 console.log(`getMax([20,-10,333,1000, 552, 7,-7]) result ${getMax([20, -10, 333, 1000, 552, 7, -7])}`);
 console.log(`getAverage([20,-10,333,1000, 552, 7,-7]) result ${getAverage([20, -10, 333, 1000, 552, 7, -7])}`);
