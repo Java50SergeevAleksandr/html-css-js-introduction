@@ -18,6 +18,7 @@ const questionsWords = [["Спутник Юпитера, открыт Г. Гал
 ["Чтобы сделать комплимент женщине в Индии, нужно сравнить ее с коровой и слоном. Причем с коровой она должна быть схожа глазами, а со слоном — этим.", "Походка"],
 ["Титул японского императора", "ТЭННО"]];
 const difMult = 0.3;
+const oldWordsIndex = ["", "", "", ""];
 let currentIndex;
 let initialLettersNumber;
 let remainedLettersNumber;
@@ -51,7 +52,7 @@ function getWordDivs() {
 }
 function getNewIndex() {
     let res = "";
-    const oldWordsIndex = ["", "", "", ""];
+    
     do {
         res = Math.trunc(Math.random() * questionsWords.length);
     }
