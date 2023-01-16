@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>marvels-field</title>
+    <link rel="stylesheet" href="styles/marvels.css">
+</head>
+
+<body>
+    <header>
+        <h3 class="logo">Marvels Field Game</h3>
+    </header>
+    <section class="game">
+
+        <section class="field">
+            <input type="text" minlength="1" maxlength="1" onchange="processLetter()" id="letter-input" placeholder="enter letter">           
+            <p id="letters-remained"></p>
+           
+            <button id="guess-button" onclick="takeChance()">I want to say a word </button>
+            <input type="text" readonly onchange="checkWord()" id="word-input" placeholder="enter word">
+        </section>
+
+        <section class="text-part">
+                       <p id="question"></p>
+
+            <section class="word">
+            </section>
+
+            <section class="result">
+                <p id="result-message"></p>
+                <button onclick="startGame()" id="play-again">Play again</button>
+            </section>
+
+        </section>
+    </section>
+
+
+
+    <script src="src/marvels.js"></script>
+</body>
+
+</html>

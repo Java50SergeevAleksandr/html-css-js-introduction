@@ -1,0 +1,79 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(184, 184, 184);
+      
+    /* rgb(184, 207, 233) */
+}
+.logo {
+    font-size: 3em;
+    margin: 3vh 0 5vh 0;
+    color: rgb(112, 0, 0);
+}
+.game {
+    display: flex;
+    justify-content: center;
+   
+}
+.field {
+    margin-right: 8vw;
+    display: flex;
+    flex-direction: column;    
+}
+.text-part {
+    display: flex;
+    flex-direction: column;
+}
+.word {
+    display: flex;
+
+}
+.letter {
+    user-select: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 1vw;
+    background-color: black;
+    color: black;
+    width: 4vw;
+    height: 4vw;
+    min-width: 4vh;
+    min-height: 4vh;
+    font-size: 2em;
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+}
+#guess-button {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: rgb(190, 0, 0);
+    background-color: rgb(222, 222, 240);
+    font-family: 'Times New Roman', Times, serif;
+}
+#question {
+    margin-left: 1vw;
+    max-width: 40vw;
+    font-size: 1.3rem;
+}
+#play-again {
+    margin-left: 1vw;
+    font-size: 3em;
+    font-weight: bold;
+    color: rgb(190, 0, 0);
+    background-color: rgb(222, 222, 240);
+    font-family: 'Times New Roman', Times, serif;
+}
+#letters-remained {
+    font-size: 1.3rem;
+    margin-bottom: 5vh;
+}
+#result-message {
+   
+    margin-left: 1vw;
+    font-size: 2em;
+    font-weight: bold;
+    color: rgb(112, 0, 0);
+    font-family: 'Times New Roman', Times, serif;
+}
