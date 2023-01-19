@@ -1,50 +1,36 @@
 
-function createEmployee(id, name, birthYear, salary, city, country) {
-    return {id, name, birthYear, salary, address: {city, country}}
+function createAddress(city, street) {
+    return { city, street }
 }
-const employees = [
-    createEmployee(123, "Vasya", 2000, 15000, "Lod", "Israel"),
-    createEmployee(124, "David", 1975, 15500, "Tel Aviv", "Israel"),
-    createEmployee(125, "Sara", 1985, 20000, "New York", "USA"),
-    createEmployee(126, "Abraham", 1990, 13000, "London", "UK"),
-    createEmployee(127, "Moshe", 2000, 15000, "Rehovot", "Israel"),
-    createEmployee(128, "Goga", 1993, 10000, "Tbilisi", "Gorgia"),
-    createEmployee(129, "Sasha", 2000, 25000, "Ramat Gan", "Israel"),
-    createEmployee(130, "Victor", 2003, 10000, "Arad", "Israel")
+function createPerson(id, name, address) {
+    return { id, name, address }
+}
+const persons = [
+    createPerson(123, "Vasya", createAddress("Rehovot", "Parshani")),
+    createPerson(124, "Olya", createAddress("Rehovot", "Pr.Plaut")),
+    createPerson(125, "Tolya", createAddress("Tel-Aviv", "Dizengoff")),
+    createPerson(126, "Sara", createAddress("Lod", "Sokolov"))
 ]
 
-
-function getEmployee(employees, id) {    
-    //returns reference to an Employee object with a given id value
-    return employees.find(empl => empl.id === id)
-}
-function getEmployeesBySalary(employees, salaryFrom, salaryTo) {   
-    //returns array of Employee objects that have salary in [salaryFrom, salaryTo]
-    return employees.filter(empl => salaryFrom <= empl.salary && empl.salary <= salaryTo)    
-}
-function getEmployeesByCity(employees, city) {    
-    //returns array of Employee objects from a given city
-    return employees.filter(empl => empl.address.city.toLowerCase() === city.toLowerCase())
-}
-function getEmployeeNames(employees) {
-       //returns array of all Employee names
-    return employees.map(empl => empl.name)
-}
-function sortEmployeesByAge(employees) {    
-    //returns array of Employee objects sorted by age in ascending order
-    return employees.sort((a,b) => b.birthYear - a.birthYear)
-}
-function computeSalaryBudget(employees) {    
-    //computes and returns total salary for all Employee objects
-    return employees.reduce((total, empl) => total + empl.salary, 0)
+//=======================================
+// 1 ) Calculate IN ONE LINE OF CODE the name of Person living in Rehovot and having maximal value of 'id'
+//     The expected result: Olya
+function getName(persons, setCity) {
+    return persons.reduce((accum, value, index) => (value.address.city === setCity && (index == 0 || value.id >= persons[index - 1].id)) ?
+        value.name : accum, undefined)
 }
 
-const emplById = getEmployee(employees, 125);
-const emplBySalary = getEmployeesBySalary(employees, 15000, 20000);
-const emplByCity = getEmployeesByCity(employees, "London");
-const emplNames = getEmployeeNames(employees);
-const emplByAge = sortEmployeesByAge(employees);
-const budget = computeSalaryBudget(employees);
 
-console.log(`getEmployee(employees, 125) => ${emplById.id}`);
-console.log(`computeSalaryBudget(employees) => ${budget}`);
+//=======================================
+// 2*) Build IN ONE LINE OF CODE the statistics of persons amount per city. 
+//     The expected result is object: {Rehovot:2, 'Tel-Aviv':1,Lod:1}
+
+function getStatistics(persons) {
+    return persons.reduce((accum, value) => {
+        Object.keys(accum).includes(value.address.city) ? accum[value.address.city]++ : accum[value.address.city] = 1
+        return accum
+    }, {})
+}
+let test = getStatistics(persons);
+let testName = getName(persons, "Rehovot");
+console.log(getStatistics(persons));
