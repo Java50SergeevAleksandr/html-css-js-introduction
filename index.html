@@ -7,157 +7,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/style.css">
     <link rel="shortcut icon" href="images/favi.png" type="image/x-icon">
-    <title>Food-gallery</title>
+    <title>Movies gallery</title>
 </head>
 
 <body>
     <header class="logo">
-        <h2 class="logo-title">Food Gallery</h2>
-        <div class="sound-buttons">
-            <button class="sound-button1" onclick="muteVOlume()" type="button">Mute</button>
-            <button class="sound-button2" onclick="setHalfVolume()" type="button">Set volume to 0.4</button>
-            <button class="sound-button3" onclick="setFullVolume()" type="button">Set volume to 0.8</button>
-        </div>
-
+        <h2 class="logo-title">Movies Gallery</h2>
     </header>
     <main class="main-class hidden">
         <section class="details-container">
             <div class="details-frame">
                 <img src="images/food1.jpg" class="details-image">
                 <span class="details-title">Example of good food</span>
-                <button id="hide-button">X</button>
-                <audio id="audio" src="audio/audio1.mp3">
-                    Your browser does not support the audio tag.
-                </audio>
+                <button id="hide-button">X</button>               
             </div>
         </section>
         <ul class="thumbnails-list">
-            <li class="thumbnails-item">
-                <a class="thumbnails-anchor" href="#" data-details-audio="audio/audio1.mp3"
-                    data-details-image="images/food1.jpg" data-details-title="Potato and chicken">
-                    <img src="images/food1.jpg" class="thumbnails-image">
-                    <span class="thumbnails-title">Dish 1</span>
-                </a>
-            </li>
-            <li class="thumbnails-item">
-                <a class="thumbnails-anchor" href="#" data-details-audio="audio/audio2.mp3"
-                    data-details-image="images/food2.jpg" data-details-title="Fish with vegetables">
-                    <img src="images/food2.jpg" class="thumbnails-image">
-                    <span class="thumbnails-title">Dish 2</span>
-                </a>
-            </li>
-            <li class="thumbnails-item">
-                <a class="thumbnails-anchor" href="#" data-details-audio="audio/audio3.mp3"
-                    data-details-image="images/food3.jpg" data-details-title="Potatoes with tomatoes">
-                    <img src="images/food3.jpg" class="thumbnails-image">
-                    <span class="thumbnails-title">Dish 3</span>
-                </a>
-            </li>
-            <li class="thumbnails-item">
-                <a class="thumbnails-anchor" href="#" data-details-audio="audio/audio4.mp3"
-                    data-details-image="images/food4.jpg" data-details-title="Fish with lemons">
-                    <img src="images/food4.jpg" class="thumbnails-image">
-                    <span class="thumbnails-title">Dish 4</span>
-                </a>
-            </li>
-            <li class="thumbnails-item">
-                <a class="thumbnails-anchor" href="#" data-details-audio="audio/audio5.mp3"
-                    data-details-image="images/food5.jpg" data-details-title="French onion soup">
-                    <img src="images/food5.jpg" class="thumbnails-image">
-                    <span class="thumbnails-title">Dish 5</span>
-                </a>
-            </li>
-            <li class="thumbnails-item">
-                <a class="thumbnails-anchor" href="#" data-details-audio="audio/audio6.mp3"
-                    data-details-image="images/food6.jpg" data-details-title="Omelette in a bun">
-                    <img src="images/food6.jpg" class="thumbnails-image">
-                    <span class="thumbnails-title">Dish 6</span>
-                </a>
-            </li>
-            <li class="thumbnails-item">
-                <a class="thumbnails-anchor" href="#" data-details-audio="audio/audio1.mp3"
-                    data-details-image="images/food1.jpg" data-details-title="Potato and chicken">
-                    <img src="images/food1.jpg" class="thumbnails-image">
-                    <span class="thumbnails-title">Dish 1</span>
-                </a>
-            </li>
-            <li class="thumbnails-item">
-                <a class="thumbnails-anchor" href="#" data-details-audio="audio/audio2.mp3"
-                    data-details-image="images/food2.jpg" data-details-title="Fish with vegetables">
-                    <img src="images/food2.jpg" class="thumbnails-image">
-                    <span class="thumbnails-title">Dish 2</span>
-                </a>
-            </li>
-            <li class="thumbnails-item">
-                <a class="thumbnails-anchor" href="#" data-details-audio="audio/audio3.mp3"
-                    data-details-image="images/food3.jpg" data-details-title="Potatoes with tomatoes">
-                    <img src="images/food3.jpg" class="thumbnails-image">
-                    <span class="thumbnails-title">Dish 3</span>
-                </a>
-            </li>
-            <li class="thumbnails-item">
-                <a class="thumbnails-anchor" href="#" data-details-audio="audio/audio4.mp3"
-                    data-details-image="images/food4.jpg" data-details-title="Fish with lemons">
-                    <img src="images/food4.jpg" class="thumbnails-image">
-                    <span class="thumbnails-title">Dish 4</span>
-                </a>
-            </li>
-            <li class="thumbnails-item">
-                <a class="thumbnails-anchor" href="#" data-details-audio="audio/audio5.mp3"
-                    data-details-image="images/food5.jpg" data-details-title="French onion soup">
-                    <img src="images/food5.jpg" class="thumbnails-image">
-                    <span class="thumbnails-title">Dish 5</span>
-                </a>
-            </li>
-            <li class="thumbnails-item">
-                <a class="thumbnails-anchor" href="#" data-details-audio="audio/audio6.mp3"
-                    data-details-image="images/food6.jpg" data-details-title="Omelette in a bun">
-                    <img src="images/food6.jpg" class="thumbnails-image">
-                    <span class="thumbnails-title">Dish 6</span>
-                </a>
-            </li>
-            <li class="thumbnails-item">
-                <a class="thumbnails-anchor" href="#" data-details-audio="audio/audio1.mp3"
-                    data-details-image="images/food1.jpg" data-details-title="Potato and chicken">
-                    <img src="images/food1.jpg" class="thumbnails-image">
-                    <span class="thumbnails-title">Dish 1</span>
-                </a>
-            </li>
-            <li class="thumbnails-item">
-                <a class="thumbnails-anchor" href="#" data-details-audio="audio/audio2.mp3"
-                    data-details-image="images/food2.jpg" data-details-title="Fish with vegetables">
-                    <img src="images/food2.jpg" class="thumbnails-image">
-                    <span class="thumbnails-title">Dish 2</span>
-                </a>
-            </li>
-            <li class="thumbnails-item">
-                <a class="thumbnails-anchor" href="#" data-details-audio="audio/audio3.mp3"
-                    data-details-image="images/food3.jpg" data-details-title="Potatoes with tomatoes">
-                    <img src="images/food3.jpg" class="thumbnails-image">
-                    <span class="thumbnails-title">Dish 3</span>
-                </a>
-            </li>
-            <li class="thumbnails-item">
-                <a class="thumbnails-anchor" href="#" data-details-audio="audio/audio4.mp3"
-                    data-details-image="images/food4.jpg" data-details-title="Fish with lemons">
-                    <img src="images/food4.jpg" class="thumbnails-image">
-                    <span class="thumbnails-title">Dish 4</span>
-                </a>
-            </li>
-            <li class="thumbnails-item">
-                <a class="thumbnails-anchor" href="#" data-details-audio="audio/audio5.mp3"
-                    data-details-image="images/food5.jpg" data-details-title="French onion soup">
-                    <img src="images/food5.jpg" class="thumbnails-image">
-                    <span class="thumbnails-title">Dish 5</span>
-                </a>
-            </li>
-            <li class="thumbnails-item">
-                <a class="thumbnails-anchor" href="#" data-details-audio="audio/audio6.mp3"
-                    data-details-image="images/food6.jpg" data-details-title="Omelette in a bun">
-                    <img src="images/food6.jpg" class="thumbnails-image">
-                    <span class="thumbnails-title">Dish 6</span>
-                </a>
-            </li>
+            
         </ul>
     </main>
     <footer></footer>
