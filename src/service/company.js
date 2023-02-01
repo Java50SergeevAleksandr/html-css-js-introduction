@@ -1,71 +1,78 @@
-export function createEmployee(id, name, birthYear, salary, city, country) {
-    return { id, name, birthYear, salary, address: { city, country } }
-}
-const employees = [
-    createEmployee(123, "Vasya", 2000, 15000, "Lod", "Israel"),
-    createEmployee(124, "David", 1975, 15500, "Tel Aviv", "Israel"),
-    createEmployee(125, "Sara", 1985, 20000, "New York", "USA"),
-    createEmployee(126, "Abraham", 1990, 13000, "London", "UK"),
-    createEmployee(127, "Moshe", 2000, 15000, "Rehovot", "Israel"),
-    createEmployee(128, "Goga", 1993, 10000, "Tbilisi", "Gorgia"),
-    createEmployee(129, "Sasha", 2000, 25000, "Ramat Gan", "Israel"),
-    createEmployee(130, "Victor", 2003, 10000, "Arad", "Israel")
-]
+import { employeeConfig } from "../config/employee-config.js";
+import { getRandomNumber } from "../utils/random.js";
 
+export function createEmployee(name, birthYear, salary, city, country) {
+    return { name, birthYear, salary, address: { city, country } }
+}
 export class Company {
     #employees //object key: <id value>, value: reference to Employee object
     constructor() {
         this.#employees = {};
     }
+
     addEmployee(empl) {
         //adds empl into #employees object
         //returns true if added new employee object
         //returns false if employee with a given id value already exists
-        
-         return Object.keys(this.#employees).includes(empl.id.toString()) ? false : (this.#employees[empl.id] = empl, true);
+        let newId;
+        let res = "Reach ID limit";
+        let objLenght = Object.keys(this.#employees).length;
+
+        if (empl.salary < employeeConfig.minSalary) {
+            return res = `salary value must not be less than ${employeeConfig.minSalary}`;
+        }
+        if (empl.salary > employeeConfig.maxSalary) {
+            return res = `salary value must not be greater than ${employeeConfig.maxSalary}`;
+        }
+        if (empl.birthYear > employeeConfig.maxYear) {
+            return res = `birth Year must not be greater than ${employeeConfig.maxYear}`;
+        }
+        if (empl.birthYear < employeeConfig.minYear) {
+            return res = `birth Year must not be lesser than ${employeeConfig.minYear}`;
+        }
+
+        if ((employeeConfig.maxId - employeeConfig.minId) >= objLenght) {
+            do {
+                newId = getRandomNumber(employeeConfig.minId, employeeConfig.maxId);
+            }
+            while (this.#employees[newId])
+            empl["id"] = newId;
+            this.#employees[newId] = empl;
+            res = "";
+        }
+
+        return res;
     }
-    removeEmployee(id) {        
+    removeEmployee(id) {
         //removes employee with a given id from #employees object
         //returns true if removed
         //returns false if employee with the id doesn't exist
-
-        return Object.keys(this.#employees).includes(id.toString()) ? (delete this.#employees[id], true) : false;
-    }
-    getEmployeesCountry(country) {       
-        //returns array of employee objects having field "country" equaled to a given country
-
-        const resArr = [];
-        for(const i in this.#employees){
-            if(this.#employees[i].address.country === country){
-                resArr.push(this.#employees[i]);
-            } 
+        let res = false;
+        if (this.#employees[id]) {
+            res = true;
+            delete this.#employees[id]
         }
-        return resArr;
+    }
+    getEmployeesCountry(country) {
+        //returns array of employee objects having field "country" equaled to a given country
+        return Object.values(this.#employees)
+            .filter(empl => empl.address.country === country);
     }
     getEmployeesByAge(age) {
-        //returns array of employee objects with a given age
-
-        const resArr = [];
-        for(const i in this.#employees){
-            if(new Date().getFullYear() - this.#employees[i].birthYear === age){
-                resArr.push(this.#employees[i]);
-            } 
-        }
-        return resArr;
-    }        
-    
-    getEmployeesBySalaries(salaryFrom, salaryTo) {        
+        const currentYear = new Date().getFullYear();
+        return Object.values(this.#employees)
+            .filter(empl => currentYear - empl.birthYear === age);
+    }
+    getEmployeesBySalaries(salaryFrom, salaryTo) {
         //returns array of employee objects with salary in a given closed range [salaryFrom, salaryTo]
         //if salaryFrom < 0, then get employees with salary less or equal salaryTo
-        //if salaryTo , 0, then get employees with salary greater or equal salaryFrom
+        //if salaryTo < 0, then get employees with salary greater or equal salaryFrom
         //if salaryFrom < 0 && salaryTo < 0, then get all employees
+        if (salaryTo < 0) {
+            salaryTo = Number.MAX_VALUE
+        }
+        return Object.values(this.#employees)
+            .filter(empl => empl.salary >= salaryFrom && empl.salary <= salaryTo);
 
-        const resArr = [];
-        for(const i in this.#employees){
-            if(salaryFrom <= this.#employees[i].salary && this.#employees[i].salary <= ((Math.abs(salaryTo) + salaryTo) / 2 || Infinity)){
-                resArr.push(this.#employees[i]);
-            } 
-        }  
-        return resArr;
-    }    
+    }
 }

@@ -5,6 +5,8 @@ export class EmployeeForm {
     #citiesElement;
     #countriesElement;
     #inputElements;
+    #yearInputElement;
+    #salaryInputElement;
     constructor(idParentForm) {
         const parentFormElement = document.getElementById(idParentForm);
         if (!parentFormElement) {
@@ -39,9 +41,15 @@ export class EmployeeForm {
         this.#countriesElement = document.getElementById("countries");
         this.#citiesElement = document.getElementById("cities");
         this.#inputElements = document.querySelectorAll("#employee-form [name]");
+        this.#yearInputElement = document.querySelector('#employee-form [name=birthYear]');
+        this.#salaryInputElement = document.querySelector('#employee-form [name=salary]');      
         this.setCountries();
         this.setCities();
-        this.#countriesElement.addEventListener('change', () => this.setCities());
+        this.#countriesElement.addEventListener('change', () => this.setCities());        
+        this.#salaryInputElement.addEventListener('change', () => this.checkSalary());
+        this.#yearInputElement.addEventListener('change', () => this.checkYear());
+
+
     }
     setCountries() {
         this.#countriesElement.innerHTML = Object.keys(employeeConfig.countries)
@@ -50,6 +58,24 @@ export class EmployeeForm {
     setCities() {
         this.#citiesElement.innerHTML = employeeConfig.countries[this.#countriesElement.value]
             .map(city => `<option value="${city}">${city}</option>`)
+    }
+    checkYear() {
+        if (this.#yearInputElement.value < employeeConfig.minYear) {
+            alert(`birth Year must not be lesser than ${employeeConfig.minYear}`);
+            this.#yearInputElement.value = "";
+        } else if (employeeConfig.maxYear < this.#yearInputElement.value) {
+            alert(`birth Year must not be greater than ${employeeConfig.maxYear}`);
+            this.#yearInputElement.value = "";
+        }
+    }
+    checkSalary() {
+        if (this.#salaryInputElement.value < employeeConfig.minSalary) {
+            alert(`salary value must not be less than ${employeeConfig.minSalary}`);
+            this.#salaryInputElement.value = "";
+        } else if (employeeConfig.maxSalary < this.#salaryInputElement.value) {
+            alert(`salary value must not be greater than ${employeeConfig.maxSalary}`);
+            this.#salaryInputElement.value = "";
+        }
     }
     addFormHandler(handlerFun) {
         this.#formElement.addEventListener('submit', (event) => {
@@ -61,5 +87,5 @@ export class EmployeeForm {
                 }, {});
             handlerFun(employeeData);
         })
-    } 
+    }
 }
