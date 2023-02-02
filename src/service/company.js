@@ -38,7 +38,7 @@ export class Company {
             while (this.#employees[newId])
             empl["id"] = newId;
             this.#employees[newId] = empl;
-            res = "";
+            res = "Form submitted";
         }
 
         return res;

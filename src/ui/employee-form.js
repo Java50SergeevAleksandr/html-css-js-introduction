@@ -46,8 +46,8 @@ export class EmployeeForm {
         this.setCountries();
         this.setCities();
         this.#countriesElement.addEventListener('change', () => this.setCities());        
-        this.#salaryInputElement.addEventListener('change', () => this.checkSalary());
-        this.#yearInputElement.addEventListener('change', () => this.checkYear());
+        // this.#salaryInputElement.addEventListener('change', () => this.checkSalary());
+        // this.#yearInputElement.addEventListener('change', () => this.checkYear());
 
 
     }
@@ -85,7 +85,7 @@ export class EmployeeForm {
                     res[inputElement.name] = inputElement.value;
                     return res;
                 }, {});
-            handlerFun(employeeData);
+            alert(handlerFun(employeeData));
         })
     }
 }
