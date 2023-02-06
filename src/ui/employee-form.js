@@ -4,9 +4,7 @@ export class EmployeeForm {
     #formElement;
     #citiesElement;
     #countriesElement;
-    #inputElements;
-    #yearInputElement;
-    #salaryInputElement;
+    #inputElements
     constructor(idParentForm) {
         const parentFormElement = document.getElementById(idParentForm);
         if (!parentFormElement) {
@@ -15,19 +13,19 @@ export class EmployeeForm {
         parentFormElement.innerHTML = `
         <form id="employee-form">
             <input required name="name" placeholder="enter employee name" class="form-input">
-            <input required name="birthYear" type="number" placeholder="enter birth year" class="form-input">
+            <input required name="birthYear" type="number" placeholder="enter birthYear" class="form-input">
             <input required name="salary" type="number" placeholder="enter salary" class="form-input">
             <div class="form-select-group">
                 <label>Select Country</label>
                 <select name="country" id="countries" class="form-select">
-                    <option value=""></option>
+                    <option value="uuuu"></option>
                     
                 </select>
             </div>
             <div class="form-select-group">
                 <label>Select City</label>
                 <select name="city" id="cities" class="form-select">
-                    <option value=""></option>
+                    <option value="uuuu"></option>
                     
                 </select>
             </div>
@@ -40,52 +38,33 @@ export class EmployeeForm {
         this.#formElement = document.getElementById("employee-form");
         this.#countriesElement = document.getElementById("countries");
         this.#citiesElement = document.getElementById("cities");
-        this.#inputElements = document.querySelectorAll("#employee-form [name]");
-        this.#yearInputElement = document.querySelector('#employee-form [name=birthYear]');
-        this.#salaryInputElement = document.querySelector('#employee-form [name=salary]');      
+        this.#inputElements  = document.querySelectorAll("#employee-form [name]");
         this.setCountries();
         this.setCities();
-        this.#countriesElement.addEventListener('change', () => this.setCities());        
-        // this.#salaryInputElement.addEventListener('change', () => this.checkSalary());
-        // this.#yearInputElement.addEventListener('change', () => this.checkYear());
-
-
+        this.#countriesElement.addEventListener("change", () => this.setCities())
     }
     setCountries() {
         this.#countriesElement.innerHTML = Object.keys(employeeConfig.countries)
-            .map(country => `<option value="${country}">${country}</option>`)
+        .map(country => `<option value="${country}">${country}</option>`)
     }
     setCities() {
         this.#citiesElement.innerHTML = employeeConfig.countries[this.#countriesElement.value]
-            .map(city => `<option value="${city}">${city}</option>`)
-    }
-    checkYear() {
-        if (this.#yearInputElement.value < employeeConfig.minYear) {
-            alert(`birth Year must not be lesser than ${employeeConfig.minYear}`);
-            this.#yearInputElement.value = "";
-        } else if (employeeConfig.maxYear < this.#yearInputElement.value) {
-            alert(`birth Year must not be greater than ${employeeConfig.maxYear}`);
-            this.#yearInputElement.value = "";
-        }
-    }
-    checkSalary() {
-        if (this.#salaryInputElement.value < employeeConfig.minSalary) {
-            alert(`salary value must not be less than ${employeeConfig.minSalary}`);
-            this.#salaryInputElement.value = "";
-        } else if (employeeConfig.maxSalary < this.#salaryInputElement.value) {
-            alert(`salary value must not be greater than ${employeeConfig.maxSalary}`);
-            this.#salaryInputElement.value = "";
-        }
+        .map(city => `<option value="${city}">${city}</option>`)
     }
     addFormHandler(handlerFun) {
         this.#formElement.addEventListener('submit', (event) => {
-            event.preventDefault(); // canceling default handler of "submit"
-            const employeeData = Array.from(this.#inputElements)
-                .reduce((res, inputElement) => {
-                    res[inputElement.name] = inputElement.value;
-                    return res;
-                }, {});
-            alert(handlerFun(employeeData));
-        })
+    event.preventDefault(); //canceling default handler of "submit"
+    const employeeData = Array.from(this.#inputElements)
+    .reduce((res, inputElement) => {
+        res[inputElement.name] = inputElement.value;
+        return res;
+    }, {});
+   const message = handlerFun(employeeData);
+   if (message) {
+    alert(message);
+   } else {
+    this.#formElement.reset();
+   }
+})
     }
 }

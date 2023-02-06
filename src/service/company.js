@@ -1,6 +1,7 @@
 import { employeeConfig } from "../config/employee-config.js";
 import { getRandomNumber } from "../utils/random.js";
 
+// Employe structure and function createEmployee() taken from previous HW
 export function createEmployee(name, birthYear, salary, city, country) {
     return { name, birthYear, salary, address: { city, country } }
 }
@@ -9,39 +10,19 @@ export class Company {
     constructor() {
         this.#employees = {};
     }
-
     addEmployee(empl) {
         //adds empl into #employees object
         //returns true if added new employee object
         //returns false if employee with a given id value already exists
-        let newId;
-        let res = "Reach ID limit";
-        let objLenght = Object.keys(this.#employees).length;
-
-        if (empl.salary < employeeConfig.minSalary) {
-            return res = `salary value must not be less than ${employeeConfig.minSalary}`;
-        }
-        if (empl.salary > employeeConfig.maxSalary) {
-            return res = `salary value must not be greater than ${employeeConfig.maxSalary}`;
-        }
-        if (empl.birthYear > employeeConfig.maxYear) {
-            return res = `birth Year must not be greater than ${employeeConfig.maxYear}`;
-        }
-        if (empl.birthYear < employeeConfig.minYear) {
-            return res = `birth Year must not be lesser than ${employeeConfig.minYear}`;
+        const res = checkEmployeeData(empl);
+        const id = this.#getId();
+        if (res === '') {
+            
+            empl.id = id;
+            this.#employees[id] = empl;
         }
 
-        if ((employeeConfig.maxId - employeeConfig.minId) >= objLenght) {
-            do {
-                newId = getRandomNumber(employeeConfig.minId, employeeConfig.maxId);
-            }
-            while (this.#employees[newId])
-            empl["id"] = newId;
-            this.#employees[newId] = empl;
-            res = "Form submitted";
-        }
-
-        return res;
+        return {message: res, id};
     }
     removeEmployee(id) {
         //removes employee with a given id from #employees object
@@ -59,6 +40,7 @@ export class Company {
             .filter(empl => empl.address.country === country);
     }
     getEmployeesByAge(age) {
+
         const currentYear = new Date().getFullYear();
         return Object.values(this.#employees)
             .filter(empl => currentYear - empl.birthYear === age);
@@ -75,4 +57,26 @@ export class Company {
             .filter(empl => empl.salary >= salaryFrom && empl.salary <= salaryTo);
 
     }
+    #getId() {
+        let id=0;
+        do {
+            id = getRandomNumber(employeeConfig.minId, employeeConfig.maxId + 1);
+        }while(this.#employees[id]);
+        return id;
+    }
+    getAllEmployees() {
+        return Object.values(this.#employees);
+    }
+}
+function checkEmployeeData(employee) {
+    let resStr = '';
+    if (employee.salary < employeeConfig.minSalary ||
+        employee.salary > employeeConfig.maxSalary) {
+        resStr = `salary must be in the range [${employeeConfig.minSalary}-${employeeConfig.maxSalary}]; `
+    }
+    if (employee.birthYear < employeeConfig.minYear ||
+        employee.birthYear > employeeConfig.maxYear) {
+        resStr += `birth year must be in the range [${employeeConfig.minYear}-${employeeConfig.maxYear}]`
+    }
+    return resStr;
 }
