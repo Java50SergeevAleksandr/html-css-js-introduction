@@ -17,12 +17,16 @@ export class Tabs {
                 const elementsSection = document.querySelectorAll(".configurated");
                 const showElement = document.getElementById(this.#buttonsElements[i].value);               
                 elementsSection.forEach(elm => elm.classList.add("hidden"));
-                showElement.classList.remove("hidden");                
+                showElement.classList.remove("hidden");               
+                this.#setColor(this.#buttonsElements[i]);                
             })
         }
         
     }
-    
+    #setColor(elm) {
+        this.#buttonsElements.forEach(elm => elm.classList.remove("colored"));
+        elm.classList.add("colored");
+    }
     
 }
 function getTabs(schem) {

@@ -14,6 +14,10 @@ body {
     align-items: center;
 
 }
+.colored {
+    background-color: rgb(66, 144, 207);
+    color: white;
+}
 #form-section {
     margin-top: 5vh;
 }
@@ -30,10 +34,7 @@ body {
 .tab-button {
     margin-bottom: 2vh;
 }
-.tab-button:focus {
-    background-color: rgb(66, 144, 207);
-    color: white;
-}
+
 @media (min-width: 560px) {
     body {
         flex-direction: row;
