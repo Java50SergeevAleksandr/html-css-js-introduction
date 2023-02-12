@@ -30,14 +30,14 @@ export class DataForm {
         this.#videosElement.innerHTML = videoConfig.videoLinks.map((value, id) => `<option value="${value}">Video ${id}</option>`);
     }
     addHandler(handlerFunc){
-        this.#formElement.addEventListener("submit", (event) => {
+        this.#formElement.addEventListener("submit", async (event) => {
             event.preventDefault();
             const videoData = Array.from(this.#inputElements)
             .reduce((res, val) => {
                 res[val.name] = val.value;
                 return res;
             }, {});
-            const message = handlerFunc(videoData);
+            const message = await handlerFunc(videoData);
             if(message) {
                 alert(message);
             }

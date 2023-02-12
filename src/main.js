@@ -7,12 +7,12 @@ const inputForm = new DataForm("form-section");
 const videoPlayer = new VideoPlayer("video-section");
 
 async function handleVideo(videoData) {
-    const message = checkPlayingTime(videoData.playingTime * 1000);
+    const message = checkPlayingTime(videoData.playingTime);
     if(!message) {
         videoPlayer.setUrl(videoData.selectedVideo);
-        videoPlayer.start;
+        videoPlayer.start();
         await sleep(videoData.playingTime * 1000);
-        videoPlayer.stop;
+        videoPlayer.stop();
     }
     return message;
 }

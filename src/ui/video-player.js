@@ -6,18 +6,18 @@ export class VideoPlayer {
             throw `wrong parent ID ${parentId}`;
         }
         parentEormElement.innerHTML = `
-        <video id="video-player" scr="" width="420"></video>
+        <video id="video-player" src="" width="420" preload="none"></video>
         `
 
         this.#videoElement = document.getElementById("video-player");
     }
-    start(){
+    start() {        
         this.#videoElement.play();
     }
-    stop(){
+    stop() {
         this.#videoElement.pause();
     }
-    setUrl(url){
-        this.#videoElement.scr = url;
+    setUrl(url) {
+        this.#videoElement.src = url;        
     }
 }
