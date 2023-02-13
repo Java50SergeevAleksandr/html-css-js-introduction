@@ -17,12 +17,12 @@ export class DataProcessor {
             await fetch(`${this.#url}&latitude=${this.#cities[city].latitude}&longitude=${this.#cities[city].longitude}&start_date=${startDate}&end_date=${endDate}`);
         const data = await responseFromServer.json();
         const res = [];
-        const lengthHours = Number(hourTo) - Number(hourFrom) + 1 + (24 * (Number(endDate.substr(-2)) - Number(startDate.substr(-2))));
-        for (let i = 0; i < lengthHours; i++) {
+        const lengthHours = Number(hourTo) + (24 * (Number(endDate.substr(-2)) - Number(startDate.substr(-2))));
+        for (let i = Number(hourFrom); i <= lengthHours; i++) {
             res.push({
-                date: data.hourly.time[i + Number(hourFrom)].split("T")[0],
-                hour: data.hourly.time[i + Number(hourFrom)].split("T")[1],
-                temperature: data.hourly.temperature_2m[i + Number(hourFrom)]
+                date: data.hourly.time[i].split("T")[0],
+                hour: data.hourly.time[i].split("T")[1],
+                temperature: data.hourly.temperature_2m[i]
             })
         }
 
