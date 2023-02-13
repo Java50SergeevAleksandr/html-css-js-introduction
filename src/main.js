@@ -1,8 +1,13 @@
-import { DataProcessor } from "./service/DataProcessor.js";
-const url = "https://api.open-meteo.com/v1/gfs?hourly=temperature_2m&timezone=IST";
-const dataProcessor = new DataProcessor(url);
+import { weatherConfig } from "./config/weather_config.js";
+import { DataProcessor } from "./service/dataProcessor.js";
+
+
+
+const url = weatherConfig.url;
+const cities = weatherConfig.cities;
+const dataProcessor = new DataProcessor(url, cities);
 async function displayTemperatures() {
-    const data = await dataProcessor.getData(29.5577, 34.9519);
-    console.log(data.hourly.temperature_2m)
+    const data = await dataProcessor.getTemperatureData("Haifa", "2023-02-14", "2023-02-16", "2", "22");
+    console.log(data);
 }
 displayTemperatures();
