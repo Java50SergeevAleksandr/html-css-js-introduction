@@ -10,7 +10,7 @@ export class DataForm {
             throw `wrong perrent ID ${parrentId}`;
         }
         parentFormElement.innerHTML = `
-        <form id="input-form">
+        <form id="input-form" class="form-class">
         <input required name="playingTime" type="number" placeholder="enter playing time in seconds" class="form-inpit">
         <label for="selected-video">Choose video:</label>
         <select name="selectedVideo" id="selected-video">           
@@ -27,7 +27,7 @@ export class DataForm {
         this.setVideos();
     }
     setVideos(){
-        this.#videosElement.innerHTML = videoConfig.videoLinks.map((value, id) => `<option value="${value}">Video ${id}</option>`);
+        this.#videosElement.innerHTML = videoConfig.videoLinks.map((value, id) => `<option value="${value}">Video ${id + 1}</option>`);
     }
     addHandler(handlerFunc){
         this.#formElement.addEventListener("submit", async (event) => {
