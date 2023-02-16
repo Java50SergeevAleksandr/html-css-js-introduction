@@ -1,0 +1,19 @@
+body {
+    display: flex;
+    flex-direction: row;
+    margin-top: 3vh;
+}
+#input-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;    
+}
+#video-section {
+    margin: auto;
+}
+.form-inpit {
+    min-width: 180px;
+}
+#input-form :nth-child(odd) {
+    margin-bottom: 2vh;
+}

@@ -11,7 +11,7 @@ export class DataForm {
         }
         parentFormElement.innerHTML = `
         <form id="input-form" class="form-class">
-        <input required name="playingTime" type="number" placeholder="enter playing time in seconds" class="form-inpit">
+        <input required name="playingTime" type="number" min="${videoConfig.minTime}" max="${videoConfig.maxTime}" placeholder="enter playing time in seconds" class="form-inpit">
         <label for="selected-video">Choose video:</label>
         <select name="selectedVideo" id="selected-video">           
             <option></option>

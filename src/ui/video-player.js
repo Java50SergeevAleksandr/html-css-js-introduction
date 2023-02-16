@@ -6,7 +6,7 @@ export class VideoPlayer {
             throw `wrong parent ID ${parentId}`;
         }
         parentEormElement.innerHTML = `
-        <video id="video-player" src="" width="420" preload="none"></video>
+        <video id="video-player" src="" width="420" preload="none" controls></video>
         `
 
         this.#videoElement = document.getElementById("video-player");
