@@ -1,12 +1,11 @@
 body {
     display: flex;
     flex-direction: row;
-    margin-top: 3vh;
+    margin-top: 3vh;    
 }
 #input-form {
     display: flex;
-    flex-direction: column;
-    justify-content: center;    
+    flex-direction: column;       
 }
 #video-section {
     margin: auto;
