@@ -1,15 +1,12 @@
 class Deferred {
     #value;
-    constructor() {
-        this.#value = "hello";
-    }
     then(userFunc) {
-        this.#value = userFunc(this.#value);
-    }
-    resolve() {
+       setTimeout(() => {this.#value = userFunc(this.#value);});        
+    }    
+    resolve(value) {
+        this.#value = value;        
     }
 }
-
 
 // with async
 //
@@ -21,6 +18,19 @@ class Deferred {
 //     }    
 //     resolve(value) {
 //         this.#value = value;        
+//     }
+// }
+
+
+// class Deferred {
+//     #value;
+//     constructor() {
+//         this.#value = "hello";
+//     }
+//     then(userFunc) {
+//         this.#value = userFunc(this.#value);
+//     }
+//     resolve() {
 //     }
 // }
 
